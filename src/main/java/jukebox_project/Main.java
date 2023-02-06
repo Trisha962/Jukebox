@@ -96,7 +96,7 @@ public class Main {
                     switch (choice)
                     {
                         case 1:
-                            search.createPlaylist("Rock");
+                            search.createPlaylist();
                             songsMethod.mainMenu();
                             break;
                         case 2:

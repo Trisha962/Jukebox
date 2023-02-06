@@ -1,17 +1,13 @@
 package jukebox_project;// Java program to play an Audio
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Collections;
-import java.util.Random;
+
 import java.util.Scanner;
 
-import static jukebox_project.DeleteSong.songs;
 
 public class AudioInputStream extends database{
     int currentSongIndex = 0;
@@ -48,7 +44,7 @@ public class AudioInputStream extends database{
                     String response = "";
                    // The method enters a loop that runs until the user enters 'Q' as the response.
                     while(!response.equals("Q")) {
-                        System.out.println("P = play, S = Stop,  L =Loop, Q = Quit, N=Next, SH= Shuffle");
+                        System.out.println("P = play, S = Stop,  L =Loop, Q = Quit, N=Nexte");
                         System.out.print("--->Enter Your Choice: ");
                         response = sc.next();
                         response = response.toUpperCase();
@@ -70,10 +66,15 @@ public class AudioInputStream extends database{
                                 clip.close();
                                 if (rs.next())
                                 {
+                                      // check if there is another song to play
+                                    // checks if there is a next record in the ResultSet
                                     id = rs.getInt("songid");
                                     path = rs.getString("path");
+                                    //creates a new File object using the path obtained
                                     file = new File(path);
+                                    //creates an AudioInputStream from the File object "file".
                                     audioStream = AudioSystem.getAudioInputStream(file);
+                                     //creates a new Clip object from the default Clip
                                     clip = AudioSystem.getClip();
                                     clip.open(audioStream);
                                     clip.start();

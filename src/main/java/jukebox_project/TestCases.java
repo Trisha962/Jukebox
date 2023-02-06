@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.junit.After;
@@ -22,13 +23,18 @@ public class TestCases {
     private ByteArrayOutputStream testOut;
 
     @Before
+    //setUpOutput() method indicates that this method should be run before each test method
     public void setUpOutput() {
+        //ByteArrayOutputStream so that the output can be captured and tested
+        // This stream is used to capture the output of the system, which is usually sent to the standard output stream
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
     }
 
     @After
+    //method should be run after each test method,
     public void restoreSystemInputOutput() {
+        //restoreSystemInputOutput() sets the standard input stream to the value stored in the systemIn
         System.setIn(systemIn);
         System.setOut(systemOut);
     }
@@ -42,6 +48,7 @@ public class TestCases {
         scanner.close();
         Assert.assertEquals(expected, result);
     }
+
     @Test
     public void testSongsMethod() {
         SongsMethod songsMethod = new SongsMethod();
@@ -53,5 +60,6 @@ public class TestCases {
         DisplayMenu displayMenu = new DisplayMenu();
         assertEquals(null, displayMenu.Menu());
     }
+
 
 }

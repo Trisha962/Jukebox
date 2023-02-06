@@ -6,10 +6,9 @@ import java.util.Scanner;
 
 
 public class playlistCreateView extends database {
-    playlistSongs songs = new playlistSongs();
-   // AudioInputStream audioInputStream = new AudioInputStream();
+
     static Scanner sc = new Scanner(System.in);
-    public Object createPlaylist(String rock) {
+    public Object createPlaylist() {
         Connection con = getConnection();
         List<Integer> songIds = new ArrayList<>();
         System.out.println("Please Create ID for your Playlist");

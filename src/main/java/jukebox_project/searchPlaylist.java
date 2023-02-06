@@ -341,11 +341,15 @@ public class searchPlaylist extends database
                                clip.close();  // close the current clip
 
                                // check if there is another song to play
+                               //checks if there is a next record in the ResultSet
                                if (rs.next()) {
                                    id = rs.getInt("songid");
                                    path = rs.getString("path");
+                                   //creates a new File object using the path obtained
                                    file = new File(path);
+                                   //creates an AudioInputStream from the File object "file"
                                    audioStream = AudioSystem.getAudioInputStream(file);
+                                   //creates a new Clip object from the default Clip
                                    clip = AudioSystem.getClip();
                                    clip.open(audioStream);
                                    clip.start();
